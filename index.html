@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Listener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-top">
+                <h1>WebSocket Listener</h1>
+                <span class="status-badge" id="status">Connecting...</span>
+            </div>
+            <div class="header-meta">
+                <span class="message-count" id="messageCount">0 messages</span>
+                <button class="btn-clear" id="clearBtn" title="Clear all messages">Clear</button>
+            </div>
+        </header>
+
+        <div id="messages"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
