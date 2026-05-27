@@ -1,0 +1,10 @@
+push project on github
+
+c:\Users\Administrator\Documents\html_web
+
+git config user.name "JOSHUAGALAGAR"
+git config user.email "joshuatuyor010503@gmail.com"
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+
