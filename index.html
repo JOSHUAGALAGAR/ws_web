@@ -8,16 +8,46 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="app-container">
+    <main class="app-shell">
         <header class="app-header">
-            <h1>📊 Sensor Monitoring System</h1>
-            <span class="status-badge" id="status">Connecting...</span>
+            <div>
+                <p class="eyebrow">Live plant telemetry</p>
+                <h1>Sensor Monitoring System</h1>
+            </div>
+            <div class="connection-panel">
+                <span class="status-badge connecting" id="status">Connecting</span>
+                <span class="endpoint" id="endpoint">ws://10.108.0.8:8080</span>
+            </div>
         </header>
 
-        <!-- Level Sensor Section -->
-        <section class="sensor-section">
-            <h2>Level Sensor (0-2 meters)</h2>
-            <div class="sensor-content">
+        <section class="metrics-strip" aria-label="Realtime summary">
+            <article class="metric-card">
+                <span class="metric-label">Messages</span>
+                <strong id="metricMessages">0</strong>
+            </article>
+            <article class="metric-card">
+                <span class="metric-label">Level Sensors</span>
+                <strong id="metricLevels">0/12</strong>
+            </article>
+            <article class="metric-card">
+                <span class="metric-label">Weight Sensors</span>
+                <strong id="metricWeights">0/12</strong>
+            </article>
+            <article class="metric-card">
+                <span class="metric-label">Last Update</span>
+                <strong id="metricLastUpdate">--</strong>
+            </article>
+        </section>
+
+        <section class="panel level-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">0-2 meters</p>
+                    <h2>Level Sensors</h2>
+                </div>
+                <div class="chart-actions" id="chartActions"></div>
+            </div>
+            <div class="level-layout">
                 <div class="chart-wrapper">
                     <canvas id="levelChart"></canvas>
                 </div>
@@ -25,45 +55,69 @@
             </div>
         </section>
 
-        <!-- Weight Sensor Section -->
-        <section class="sensor-section">
-            <h2>Weight Sensor (kg)</h2>
-            <div class="sensor-content">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Kilograms</p>
+                    <h2>Weight Sensors</h2>
+                </div>
+                <div class="latest-pill" id="latestWeightSource">No readings yet</div>
+            </div>
+            <div class="weight-layout">
                 <div class="weight-display" id="weightDisplay">
-                    <div class="weight-value">-- kg</div>
+                    <span>Latest Weight</span>
+                    <strong class="weight-value">-- kg</strong>
                 </div>
                 <div class="bins-grid" id="weightBins"></div>
             </div>
         </section>
 
-        <!-- Mixer Section -->
-        <section class="sensor-section">
-            <h2>Mixer Status</h2>
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Machine state</p>
+                    <h2>Mixer Status</h2>
+                </div>
+            </div>
             <div class="devices-grid" id="mixerGrid"></div>
         </section>
 
-        <!-- Refill Feedback Section -->
-        <section class="sensor-section">
-            <h2>Refill Feedback</h2>
-            <div class="bins-grid" id="refillBins"></div>
+        <section class="split-panels">
+            <section class="panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Feedback</p>
+                        <h2>Refill</h2>
+                    </div>
+                </div>
+                <div class="bins-grid compact" id="refillBins"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Feedback</p>
+                        <h2>Dispense</h2>
+                    </div>
+                </div>
+                <div class="bins-grid compact" id="dispenseBins"></div>
+            </section>
         </section>
 
-        <!-- Dispense Feedback Section -->
-        <section class="sensor-section">
-            <h2>Dispense Feedback</h2>
-            <div class="bins-grid" id="dispenseBins"></div>
-        </section>
-
-        <!-- Raw Log -->
-        <section class="sensor-section">
-            <h2>Raw Message Log</h2>
-            <div class="log-header">
-                <span class="message-count" id="messageCount">0 messages</span>
-                <button class="btn-clear" id="clearBtn">Clear Log</button>
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">WebSocket feed</p>
+                    <h2>Raw Message Log</h2>
+                </div>
+                <div class="log-actions">
+                    <span class="message-count" id="messageCount">0 messages</span>
+                    <button class="btn-clear" id="clearBtn" type="button">Clear Log</button>
+                </div>
             </div>
             <div id="log" class="log-container"></div>
         </section>
-    </div>
+    </main>
 
     <script src="app.js"></script>
 </body>
