@@ -3,30 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Listener</title>
+    <title>WebSocket Sensor Monitor</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
     <div class="app-container">
         <header class="app-header">
-            <div class="header-top">
-                <h1>WebSocket Listener</h1>
-                <span class="status-badge" id="status">Connecting...</span>
-            </div>
-            <div class="header-meta">
-                <span class="message-count" id="messageCount">0 messages</span>
-                <button class="btn-clear" id="clearBtn" title="Clear all messages">Clear</button>
-            </div>
+            <h1>📊 Sensor Monitoring System</h1>
+            <span class="status-badge" id="status">Connecting...</span>
         </header>
 
-        <div class="content-grid">
-            <div class="chart-wrapper">
-                <canvas id="dataChart"></canvas>
+        <!-- Level Sensor Section -->
+        <section class="sensor-section">
+            <h2>Level Sensor (0-2 meters)</h2>
+            <div class="sensor-content">
+                <div class="chart-wrapper">
+                    <canvas id="levelChart"></canvas>
+                </div>
+                <div class="bins-grid" id="levelBins"></div>
+            </div>
+        </section>
+
+        <!-- Weight Sensor Section -->
+        <section class="sensor-section">
+            <h2>Weight Sensor (kg)</h2>
+            <div class="sensor-content">
+                <div class="weight-display" id="weightDisplay">
+                    <div class="weight-value">-- kg</div>
+                </div>
+                <div class="bins-grid" id="weightBins"></div>
+            </div>
+        </section>
+
+        <!-- Mixer Section -->
+        <section class="sensor-section">
+            <h2>Mixer Status</h2>
+            <div class="devices-grid" id="mixerGrid"></div>
+        </section>
+
+        <!-- Refill Feedback Section -->
+        <section class="sensor-section">
+            <h2>Refill Feedback</h2>
+            <div class="bins-grid" id="refillBins"></div>
+        </section>
+
+        <!-- Dispense Feedback Section -->
+        <section class="sensor-section">
+            <h2>Dispense Feedback</h2>
+            <div class="bins-grid" id="dispenseBins"></div>
+        </section>
+
+        <!-- Raw Log -->
+        <section class="sensor-section">
+            <h2>Raw Message Log</h2>
+            <div class="log-header">
+                <span class="message-count" id="messageCount">0 messages</span>
+                <button class="btn-clear" id="clearBtn">Clear Log</button>
             </div>
             <div id="log" class="log-container"></div>
-        </div>
+        </section>
     </div>
 
     <script src="app.js"></script>
