@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Listener</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -20,7 +21,12 @@
             </div>
         </header>
 
-        <div id="messages"></div>
+        <div class="content-grid">
+            <div class="chart-wrapper">
+                <canvas id="dataChart"></canvas>
+            </div>
+            <div id="log" class="log-container"></div>
+        </div>
     </div>
 
     <script src="app.js"></script>
